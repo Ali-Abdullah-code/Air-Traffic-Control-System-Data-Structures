@@ -19,6 +19,7 @@ FlightManager::FlightManager()
 {
     totalFlights = 0;
     graphPtr = NULL;
+    registryPtr = NULL;
     cout << GREEN << "[SUCCESS] Flight Manager initialized" << RESET << endl;
 }
 
@@ -33,6 +34,13 @@ void FlightManager::setGraphReference(Graph *g)
 {
     graphPtr = g;
     cout << GREEN << "[SUCCESS] Graph reference set" << RESET << endl;
+}
+
+// ========== SET REGISTRY REFERENCE ==========
+void FlightManager::setRegistryReference(HashTable *reg)
+{
+    registryPtr = reg;
+    cout << GREEN << "[SUCCESS] Registry reference set" << RESET << endl;
 }
 
 // ========== ADD FLIGHT ==========
@@ -92,6 +100,12 @@ bool FlightManager::addFlight(string flightID, int startNodeID, int destNodeID,
     // Add flight
     flights[totalFlights] = newFlight;
     totalFlights++;
+
+    // Add aircraft to registry if registry is available
+    if (registryPtr != NULL)
+    {
+        registryPtr->insertAircraft(flightID, model, 100, startNode->name, destNode->name, "FLYING");
+    }
 
     cout << GREEN << "[ADD]" << RESET << " Flight " << CYAN << flightID
          << RESET << " added from " << startNode->name << " to " << destNode->name << endl;
@@ -279,6 +293,13 @@ bool FlightManager::landFlight(string flightID)
     }
 
     flight->status = LANDED;
+
+    // Update registry status if available
+    if (registryPtr != NULL)
+    {
+        registryPtr->updateStatus(flightID, "LANDED");
+    }
+
     cout << GREEN << "[LANDED]" << RESET << " Flight " << CYAN << flightID
          << RESET << " has successfully landed!" << endl;
 
