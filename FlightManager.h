@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "Graph.h"
+#include "HashTable.h"
 
 using namespace std;
 
@@ -45,7 +46,8 @@ class FlightManager
 private:
     ActiveFlight flights[MAX_ACTIVE_FLIGHTS];
     int totalFlights;
-    Graph *graphPtr; // Pointer to graph for coordinate access
+    Graph *graphPtr;        // Pointer to graph for coordinate access
+    HashTable *registryPtr; // Pointer to aircraft registry
 
 public:
     // Constructor & Destructor
@@ -54,6 +56,9 @@ public:
 
     // Set graph reference
     void setGraphReference(Graph *g);
+
+    // Set registry reference
+    void setRegistryReference(HashTable *reg);
 
     // Flight creation
     bool addFlight(string flightID, int startNodeID, int destNodeID,
