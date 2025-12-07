@@ -455,8 +455,8 @@ void systemMenu()
 
     cout << Color::BOLD << "  +-----------------------------------------------+\n";
     cout << "  | " << Color::RESET << Color::GREEN << "1. Add Airport/Waypoint" << Color::RESET << Color::BOLD << "                       |\n";
-    cout << "  | " << Color::RESET << Color::GREEN << "2. Add Flight Corridor (Edge)" << Color::RESET << Color::BOLD << "                |\n";
-    cout << "  | " << Color::RESET << Color::GREEN << "3. View All Nodes & Edges" << Color::RESET << Color::BOLD << "                    |\n";
+    cout << "  | " << Color::RESET << Color::GREEN << "2. Add Flight Corridor (Edge)" << Color::RESET << Color::BOLD << "                 |\n";
+    cout << "  | " << Color::RESET << Color::GREEN << "3. View All Nodes & Edges" << Color::RESET << Color::BOLD << "                     |\n";
     cout << "  | " << Color::RESET << Color::GREEN << "4. Save System Data" << Color::RESET << Color::BOLD << "                           |\n";
     cout << "  | " << Color::RESET << Color::GREEN << "5. Load System Data" << Color::RESET << Color::BOLD << "                           |\n";
     cout << "  | " << Color::RESET << Color::GREEN << "6. System Status" << Color::RESET << Color::BOLD << "                              |\n";
@@ -507,7 +507,7 @@ void systemMenu()
 
         cout << Color::CYAN << "\n[ADD FLIGHT CORRIDOR]\n"
              << Color::RESET;
-        cout << "  Enter Source Node ID: ";
+        cout << "  Enter Source Node ID (e.g., 1, 2, 3, 4): ";
         cin >> fromID;
 
         cout << "  Enter Destination Node ID: ";
