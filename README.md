@@ -75,7 +75,8 @@ Air-Traffic-Control-System-Data-Structures/
 2. **Flight Control** - Manage aircraft operations (add flights, declare emergencies, move flights, update fuel, view active flights, land aircraft)
 3. **Search & Reporting** - Search flights, print flight logs, find safe routes using Dijkstra's algorithm
 4. **System Management** - Dynamic airspace control (add airports/waypoints, add flight corridors, view network, save/load data, system status)
-5. **Exit** - Close the application
+5. **Aircraft Registry** - View all aircraft in the system with their current status, fuel, origin, and destination
+6. **Exit** - Close the application
 
 ### Key Operations
 
@@ -84,6 +85,7 @@ Air-Traffic-Control-System-Data-Structures/
 - **Dynamic Airspace**: System Management allows adding new airports, waypoints, and flight corridors
 - **Data Persistence**: System Management → Save/Load System Data for complete airspace configuration
 - **Flight Logging**: Search & Reporting → Print Flight Log displays chronological events using AVL Tree
+- **Aircraft Registry**: Main Menu → Aircraft Registry displays all aircraft with real-time status updates using HashTable for O(1) lookup performance
 
 ## Algorithms & Data Structures
 
@@ -95,14 +97,19 @@ Air-Traffic-Control-System-Data-Structures/
 ### AVL Tree
 - **Purpose**: Maintains balanced flight logs for O(log n) insertion and retrieval
 - **Operations**: Insert, search, and display chronological flight events
+- **Access**: Search & Reporting Menu → Option 2 (Print Flight Log)
 
 ### Hash Table
-- **Purpose**: Fast O(1) average-case lookup for aircraft registry
-- **Implementation**: Separate chaining for collision resolution
+- **Purpose**: Maintains aircraft registry for fast O(1) average-case lookup by flight ID
+- **Implementation**: Separate chaining for collision resolution, 100-bucket hash table
+- **Features**: Insert aircraft on flight creation, update status on landing/emergencies
+- **Access**: Main Menu → Option 5 (Aircraft Registry) displays all registered aircraft
+- **Integration**: Automatically populated when flights are added and updated during operations
 
 ### Min Heap
 - **Purpose**: Priority queue for landing sequence management
 - **Operations**: Insert aircraft with priority, extract minimum for landing order
+- **Status**: Fully implemented for future use in priority-based landing systems
 
 ## Technical Details
 
