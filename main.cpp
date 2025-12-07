@@ -91,11 +91,12 @@ void displayMainMenu()
     cout << "  | " << Color::RESET << Color::GREEN << "2. Flight Control" << Color::RESET << Color::BOLD << "                             |\n";
     cout << "  | " << Color::RESET << Color::GREEN << "3. Search & Reporting" << Color::RESET << Color::BOLD << "                         |\n";
     cout << "  | " << Color::RESET << Color::GREEN << "4. System Management" << Color::RESET << Color::BOLD << "                          |\n";
-    cout << "  | " << Color::RESET << Color::RED << "5. Exit Program" << Color::RESET << Color::BOLD << "                               |\n";
+    cout << "  | " << Color::RESET << Color::GREEN << "5. Aircraft Registry" << Color::RESET << Color::BOLD << "                          |\n";
+    cout << "  | " << Color::RESET << Color::RED << "6. Exit Program" << Color::RESET << Color::BOLD << "                               |\n";
     cout << "  +-----------------------------------------------+\n";
     cout << Color::RESET << endl;
 
-    cout << Color::CYAN << "Enter your choice (1-5): " << Color::RESET;
+    cout << Color::CYAN << "Enter your choice (1-6): " << Color::RESET;
 }
 
 // ========== INITIALIZE AIRSPACE ==========
@@ -130,6 +131,9 @@ void initializeAirspace()
 
     // Set graph reference for flight manager
     flightMgr.setGraphReference(&airspace);
+
+    // Set registry reference for flight manager
+    flightMgr.setRegistryReference(&registry);
 
     cout << Color::GREEN << "[SUCCESS] Airspace initialized with 4 airports and 4 waypoints\n"
          << Color::RESET;
@@ -593,6 +597,17 @@ int main()
             systemMenu();
             break;
         case 5:
+            clearScreen();
+            cout << Color::BOLD << Color::CYAN;
+            cout << "\n+==============================================================+\n";
+            cout << "|               " << Color::YELLOW << "AIRCRAFT REGISTRY" << Color::CYAN << "                              |\n";
+            cout << "+==============================================================+\n";
+            cout << Color::RESET << endl;
+            registry.displayAllAircraft();
+            cout << Color::YELLOW << "Press ENTER to return to menu..." << Color::RESET;
+            cin.get();
+            break;
+        case 6:
             clearScreen();
             displayFooter();
             cout << Color::GREEN << "Program terminated successfully.\n"
